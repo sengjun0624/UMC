@@ -1,4 +1,4 @@
-package com.example.umc.domain.enums;
+package com.example.umc.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

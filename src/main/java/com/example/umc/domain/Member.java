@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class MemberEntity {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
