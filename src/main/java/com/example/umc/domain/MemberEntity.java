@@ -1,6 +1,10 @@
 package com.example.umc.domain;
 
+import com.example.umc.domain.enums.Gender;
+import com.example.umc.domain.enums.SocialType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,6 +30,13 @@ public class MemberEntity {
     private String address;
 
     private String specAddress;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
+    @Enumerated(EnumType.STRING)
+    private SocialType socialType;
+
+    @Enumerated(EnumType.STRING)
 
     private LocalDate inactiveDate;
 
