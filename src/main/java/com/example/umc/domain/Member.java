@@ -1,5 +1,6 @@
 package com.example.umc.domain;
 
+import com.example.umc.domain.base.BaseEntity;
 import com.example.umc.domain.enums.Gender;
 import com.example.umc.domain.enums.SocialType;
 import jakarta.persistence.Entity;
@@ -20,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
