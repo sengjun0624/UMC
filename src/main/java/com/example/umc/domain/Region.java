@@ -27,7 +27,7 @@ public class Region extends BaseEntity {
 
     private String name;
 
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "region")
     private List<Store> storeList = new ArrayList<>();
 
 }
