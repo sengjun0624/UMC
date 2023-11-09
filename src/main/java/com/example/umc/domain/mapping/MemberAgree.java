@@ -1,9 +1,9 @@
 package com.example.umc.domain.mapping;
 
-import com.example.umc.domain.FoodCategory;
 import com.example.umc.domain.Member;
 import com.example.umc.domain.Terms;
 import com.example.umc.domain.base.BaseEntity;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -31,8 +31,8 @@ public class MemberAgree extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "terms_id")
     private Terms terms;
-
 }

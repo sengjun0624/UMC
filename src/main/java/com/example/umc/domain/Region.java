@@ -1,13 +1,15 @@
 package com.example.umc.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.umc.domain.base.BaseEntity;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,5 +31,4 @@ public class Region extends BaseEntity {
 
     @OneToMany(mappedBy = "region")
     private List<Store> storeList = new ArrayList<>();
-
 }

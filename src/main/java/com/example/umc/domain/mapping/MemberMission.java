@@ -4,6 +4,7 @@ import com.example.umc.domain.Member;
 import com.example.umc.domain.Mission;
 import com.example.umc.domain.base.BaseEntity;
 import com.example.umc.domain.enums.MissionStatus;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -40,5 +41,4 @@ public class MemberMission extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mission_id")
     private Mission mission;
-
 }
