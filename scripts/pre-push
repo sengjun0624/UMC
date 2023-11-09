@@ -16,5 +16,4 @@ if [ $? -ne 0 ]; then
 fi
 
 cd $CWD
-:wq:wq
 
