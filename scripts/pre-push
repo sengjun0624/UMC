@@ -1,0 +1,19 @@
+#!/bin/bash
+
+echo "Running Gradle clean test for errors"
+
+CWD=`pwd`
+MAIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+cd $MAIN_DIR/../../
+
+sudo ./gradlew clean test
+if [ $? -ne 0 ]; then
+  echo
+  echo "==> Error while testing the code"
+  cd $CWD
+  exit 1
+fi
+
+cd $CWD
+
