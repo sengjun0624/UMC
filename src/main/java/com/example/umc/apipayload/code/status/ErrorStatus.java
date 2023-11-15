@@ -18,14 +18,14 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // Member Error
 
-/*    MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4001", "사용자가 없습니다."),
+    MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4001", "사용자가 없습니다."),
     NICKNAME_NOT_EXIST(HttpStatus.BAD_REQUEST, "MEMBER4002", "닉네임은 필수 입니다."),
 
     // Article Error
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
 
     // For test
-    TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트");*/
+    TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트");
 
     private final HttpStatus httpStatus;
     private final String code;
@@ -33,11 +33,7 @@ public enum ErrorStatus implements BaseErrorCode {
 
     @Override
     public ErrorReasonDTO getReason() {
-        return ErrorReasonDTO.builder()
-                .message(message)
-                .code(code)
-                .isSuccess(false)
-                .build();
+        return ErrorReasonDTO.builder().message(message).code(code).isSuccess(false).build();
     }
 
     @Override
