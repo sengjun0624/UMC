@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.umc.apipayload.ApiResponse;
-import com.example.umc.converter.MemberConverter;
+import com.example.umc.converter.member.MemberConverter;
 import com.example.umc.domain.Member;
 import com.example.umc.service.memberservice.MemberCommandService;
 import com.example.umc.web.dto.member.MemberRequestDTO;
@@ -20,12 +20,12 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/members")
 public class MemberRestController {
 
-	private final MemberCommandService memberCommandService;
+    private final MemberCommandService memberCommandService;
 
-	@PostMapping("/")
-	public ApiResponse<MemberResponseDTO.JoinResultDTO> join(
-		@RequestBody @Valid MemberRequestDTO.JoinDto request) {
-		Member member = memberCommandService.joinMember(request);
-		return ApiResponse.onSuccess(MemberConverter.toJoinResultDTO(member));
-	}
+    @PostMapping("/")
+    public ApiResponse<MemberResponseDTO.JoinResultDTO> join(
+            @RequestBody @Valid MemberRequestDTO.JoinDto request) {
+        Member member = memberCommandService.joinMember(request);
+        return ApiResponse.onSuccess(MemberConverter.toJoinResultDTO(member));
+    }
 }
