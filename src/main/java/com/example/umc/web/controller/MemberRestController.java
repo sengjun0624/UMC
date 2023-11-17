@@ -9,8 +9,8 @@ import com.example.umc.apipayload.ApiResponse;
 import com.example.umc.converter.MemberConverter;
 import com.example.umc.domain.Member;
 import com.example.umc.service.memberservice.MemberCommandService;
-import com.example.umc.web.dto.MemberRequestDTO;
-import com.example.umc.web.dto.MemberResponseDTO;
+import com.example.umc.web.dto.member.MemberRequestDTO;
+import com.example.umc.web.dto.member.MemberResponseDTO;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +20,12 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/members")
 public class MemberRestController {
 
-    private final MemberCommandService memberCommandService;
+	private final MemberCommandService memberCommandService;
 
-    @PostMapping("/")
-    public ApiResponse<MemberResponseDTO.JoinResultDTO> join(
-            @RequestBody @Valid MemberRequestDTO.JoinDto request) {
-        Member member = memberCommandService.joinMember(request);
-        return ApiResponse.onSuccess(MemberConverter.toJoinResultDTO(member));
-    }
+	@PostMapping("/")
+	public ApiResponse<MemberResponseDTO.JoinResultDTO> join(
+		@RequestBody @Valid MemberRequestDTO.JoinDto request) {
+		Member member = memberCommandService.joinMember(request);
+		return ApiResponse.onSuccess(MemberConverter.toJoinResultDTO(member));
+	}
 }

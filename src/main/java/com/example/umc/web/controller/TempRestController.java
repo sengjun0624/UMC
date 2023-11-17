@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.umc.apipayload.ApiResponse;
 import com.example.umc.converter.TempConverter;
 import com.example.umc.service.tempservice.TempQueryService;
-import com.example.umc.web.dto.TempResponse;
+import com.example.umc.web.dto.temp.TempResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,17 +16,17 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/temp")
 @RequiredArgsConstructor
 public class TempRestController {
-    private final TempQueryService tempQueryService;
+	private final TempQueryService tempQueryService;
 
-    @GetMapping("/test")
-    public ApiResponse<TempResponse.TempTestDTO> testAPI() {
+	@GetMapping("/test")
+	public ApiResponse<TempResponse.TempTestDTO> testAPI() {
 
-        return ApiResponse.onSuccess(TempConverter.toTempTestDTO());
-    }
+		return ApiResponse.onSuccess(TempConverter.toTempTestDTO());
+	}
 
-    @GetMapping("/exception")
-    public ApiResponse<TempResponse.TempExceptionDTO> exceptionAPI(@RequestParam Integer flag) {
-        tempQueryService.CheckFlag(flag);
-        return ApiResponse.onSuccess(TempConverter.toTempExceptionDTO(flag));
-    }
+	@GetMapping("/exception")
+	public ApiResponse<TempResponse.TempExceptionDTO> exceptionAPI(@RequestParam Integer flag) {
+		tempQueryService.CheckFlag(flag);
+		return ApiResponse.onSuccess(TempConverter.toTempExceptionDTO(flag));
+	}
 }
