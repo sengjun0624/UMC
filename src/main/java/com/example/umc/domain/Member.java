@@ -4,6 +4,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.example.umc.domain.base.BaseEntity;
 import com.example.umc.domain.enums.Gender;
 import com.example.umc.domain.enums.MemberStatus;
@@ -29,6 +33,8 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@DynamicInsert
+@DynamicUpdate
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -48,11 +54,10 @@ public class Member extends BaseEntity {
     private String specAddress;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 7)
+    @Column(nullable = false, length = 10)
     private Gender gender;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 10)
     private SocialType socialType;
 
     @Enumerated(EnumType.STRING)
@@ -61,9 +66,10 @@ public class Member extends BaseEntity {
 
     private LocalDate inactiveDate;
 
-    @Column(nullable = false, length = 50)
+    // @Column(nullable = false, length = 50)
     private String email;
 
+    @ColumnDefault("0")
     private Integer point;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)

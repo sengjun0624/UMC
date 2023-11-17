@@ -1,4 +1,4 @@
-package com.example.umc.service;
+package com.example.umc.service.tempservice;
 
 import org.springframework.stereotype.Service;
 
@@ -11,9 +11,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class TempQueryServiceImpl implements TempQueryService {
 
-	@Override
-	public void CheckFlag(Integer flag) {
-		if (flag == 1)
-			throw new TempHandler(ErrorStatus.TEMP_EXCEPTION);
-	}
+    @Override
+    public void CheckFlag(Integer flag) {
+        if (flag == 1) throw new TempHandler(ErrorStatus.TEMP_EXCEPTION);
+    }
 }

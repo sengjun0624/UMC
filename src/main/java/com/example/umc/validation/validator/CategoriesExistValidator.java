@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.example.umc.apipayload.code.status.ErrorStatus;
 import com.example.umc.repository.FoodCategoryRepository;
+import com.example.umc.service.memberservice.FoodCategoryExists;
 import com.example.umc.validation.annotation.ExistCategories;
 
 import jakarta.validation.ConstraintValidator;
@@ -16,25 +17,42 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CategoriesExistValidator implements ConstraintValidator<ExistCategories, List<Long>> {
 
-	private final FoodCategoryRepository foodCategoryRepository;
+    private final FoodCategoryRepository foodCategoryRepository;
+    private final FoodCategoryExists foodCategoryExists;
 
-	@Override
-	public void initialize(ExistCategories constraintAnnotation) {
-		ConstraintValidator.super.initialize(constraintAnnotation);
-	}
+    @Override
+    public void initialize(ExistCategories constraintAnnotation) {
+        ConstraintValidator.super.initialize(constraintAnnotation);
+    }
 
-	@Override
-	public boolean isValid(List<Long> values, ConstraintValidatorContext context) {
-		boolean isValid = values.stream()
-			.allMatch(value -> foodCategoryRepository.existsById(value));
+    /*
+    	{
+    		"name": "승준",
+    		"gender": 1,
+    		"birthYear": 2000,
+    		"birthMonth": 6,
+    		"birthDay": 24,
+    		"address": "내집",
+    		"specAddress": "내방",
+    		"preferCategory": [
+    		0
+    ]
+    	}
+    	*/
+    @Override
+    public boolean isValid(List<Long> values, ConstraintValidatorContext context) {
+        boolean isValid = foodCategoryExists.isExistFoodCategory(values);
 
-		if (!isValid) {
-			context.disableDefaultConstraintViolation();
-			context.buildConstraintViolationWithTemplate(ErrorStatus.FOOD_CATEGORY_NOT_FOUND.toString())
-				.addConstraintViolation();
-		}
+        /*boolean isValid = values.stream()
+        	.allMatch(value -> foodCategoryRepository.existsById(value));
+        */
+        if (!isValid) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate(
+                            ErrorStatus.FOOD_CATEGORY_NOT_FOUND.toString())
+                    .addConstraintViolation();
+        }
 
-		return isValid;
-
-	}
+        return isValid;
+    }
 }
