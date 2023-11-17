@@ -12,7 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StoreResponseDTO {
-	private Long storeId;
-	LocalDateTime createdAt;
+
+	public static class StoreSaveResultDTO {
+		private Long storeId;
+		LocalDateTime createdAt;
+	}
 
 }
