@@ -1,3 +1,3 @@
-package com.example.umc.service;
+package com.example.umc.service.tempservice;
 
 public class TempCommandServiceImpl implements TempCommandService {}

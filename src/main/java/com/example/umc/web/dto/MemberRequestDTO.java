@@ -2,19 +2,29 @@ package com.example.umc.web.dto;
 
 import java.util.List;
 
+import com.example.umc.validation.annotation.ExistCategories;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 
 public class MemberRequestDTO {
 
     @Getter
     public static class JoinDto {
-        String name;
-        Integer gender;
-        Integer birthYear;
-        Integer birthMonth;
-        Integer birthDay;
+        @NotBlank String name;
+        @NotNull Integer gender;
+        @NotNull Integer birthYear;
+        @NotNull Integer birthMonth;
+        @NotNull Integer birthDay;
+
+        @Size(min = 5, max = 12)
         String address;
+
+        @Size(min = 5, max = 12)
         String specAddress;
-        List<Long> preferCategory;
+
+        @ExistCategories List<Long> preferCategory;
     }
 }
