@@ -1,4 +1,4 @@
-package com.example.umc.converter;
+package com.example.umc.converter.member;
 
 import java.util.List;
 import java.util.stream.Collectors;

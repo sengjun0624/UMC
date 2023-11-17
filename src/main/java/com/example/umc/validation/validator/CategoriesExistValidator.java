@@ -25,20 +25,6 @@ public class CategoriesExistValidator implements ConstraintValidator<ExistCatego
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
-    /*
-    	{
-    		"name": "승준",
-    		"gender": 1,
-    		"birthYear": 2000,
-    		"birthMonth": 6,
-    		"birthDay": 24,
-    		"address": "내집",
-    		"specAddress": "내방",
-    		"preferCategory": [
-    		0
-    ]
-    	}
-    	*/
     @Override
     public boolean isValid(List<Long> values, ConstraintValidatorContext context) {
         boolean isValid = foodCategoryExists.isExistFoodCategory(values);

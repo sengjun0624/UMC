@@ -1,12 +1,12 @@
-package com.example.umc.converter;
+package com.example.umc.converter.member;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import com.example.umc.domain.Member;
 import com.example.umc.domain.enums.Gender;
-import com.example.umc.web.dto.MemberRequestDTO;
-import com.example.umc.web.dto.MemberResponseDTO;
+import com.example.umc.web.dto.member.MemberRequestDTO;
+import com.example.umc.web.dto.member.MemberResponseDTO;
 
 public class MemberConverter {
 
