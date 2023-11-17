@@ -7,15 +7,15 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Builder
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public class StoreResponseDTO {
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class StoreSaveResultDTO {
 
-	public static class StoreSaveResultDTO {
-		private Long storeId;
-		LocalDateTime createdAt;
-	}
+        private Long storeId;
 
+        LocalDateTime createdAt;
+    }
 }

@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 
 public class MemberResponseDTO {
 
-	@Builder
-	@Getter
-	@NoArgsConstructor
-	@AllArgsConstructor
-	public static class JoinResultDTO {
-		Long memberId;
-		LocalDateTime createdAt;
-	}
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class JoinResultDTO {
+        Long memberId;
+        LocalDateTime createdAt;
+    }
 }
