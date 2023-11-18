@@ -13,6 +13,7 @@ import com.example.umc.converter.store.StoreConverter;
 import com.example.umc.domain.Review;
 import com.example.umc.domain.Store;
 import com.example.umc.service.storeservice.StoreCommandService;
+import com.example.umc.validation.annotation.ExistMember;
 import com.example.umc.web.dto.store.StoreRequestDTO;
 import com.example.umc.web.dto.store.StoreResponseDTO;
 import com.example.umc.web.dto.store.StoreReviewRequestDTO;
@@ -42,7 +43,7 @@ public class StoreRestController {
     @PostMapping("/{storeId}/reviews")
     public ApiResponse<StoreReviewResponseDTO.CreatReviewResultDTO> creat(
             @RequestBody @Valid StoreReviewRequestDTO.CreatReviewDTO request,
-            @RequestParam(name = "memberId") Long memberId,
+            @RequestParam(name = "memberId") @ExistMember Long memberId,
             @PathVariable(name = "storeId") Long storeId) {
 
         Review review = storeCommandService.creatReview(memberId, storeId, request);
