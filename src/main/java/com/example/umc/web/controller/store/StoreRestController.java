@@ -30,6 +30,6 @@ public class StoreRestController {
 
         Store store = storeCommandService.SaveStore(request);
 
-        return ApiResponse.onSuccess(StoreConverter.storeSaveResultDTO(store));
+        return ApiResponse.onSuccess(StoreConverter.toStoreSaveResultDTO(store));
     }
 }
