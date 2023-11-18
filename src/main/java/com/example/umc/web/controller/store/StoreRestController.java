@@ -45,7 +45,7 @@ public class StoreRestController {
             @RequestParam(name = "memberId") Long memberId,
             @PathVariable(name = "storeId") Long storeId) {
 
-        Review review = null;
+        Review review = storeCommandService.creatReview(memberId, storeId, request);
         return ApiResponse.onSuccess(StoreConverter.toCreatReviewResultDTO(review));
     }
 }
