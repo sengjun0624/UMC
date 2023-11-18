@@ -49,7 +49,6 @@ public class StoreCommandServiceImpl implements StoreCommandService {
         Review review = StoreConverter.toReview(request);
         review.setMember(memberRepository.findById(memberId).get());
         review.setStore(storeRepository.findById(storeId).get());
-
         return review;
     }
 }
