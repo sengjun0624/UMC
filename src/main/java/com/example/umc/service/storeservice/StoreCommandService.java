@@ -9,5 +9,5 @@ public interface StoreCommandService {
 
     Store SaveStore(StoreRequestDTO.StoreSaveDto request);
 
-    Review creatReview(StoreReviewRequestDTO.CreatReviewDTO request);
+    Review creatReview(Long memberId, Long storeId, StoreReviewRequestDTO.CreatReviewDTO request);
 }

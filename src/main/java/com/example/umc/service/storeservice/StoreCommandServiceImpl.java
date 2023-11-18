@@ -9,6 +9,7 @@ import com.example.umc.converter.store.StoreConverter;
 import com.example.umc.domain.Region;
 import com.example.umc.domain.Review;
 import com.example.umc.domain.Store;
+import com.example.umc.repository.MemberRepository;
 import com.example.umc.repository.RegionRepository;
 import com.example.umc.repository.StoreRepository;
 import com.example.umc.web.dto.store.StoreRequestDTO;
@@ -25,6 +26,8 @@ public class StoreCommandServiceImpl implements StoreCommandService {
 
     private final RegionRepository regionRepository;
 
+    private final MemberRepository memberRepository;
+
     @Override
     @Transactional
     public Store SaveStore(StoreRequestDTO.StoreSaveDto request) {
@@ -37,13 +40,16 @@ public class StoreCommandServiceImpl implements StoreCommandService {
                         .orElseThrow(() -> new RegionHandler(ErrorStatus.REGION_NOT_FOUND));
 
         newStore.setRegion(newRegion);
-
         return storeRepository.save(newStore);
     }
 
     @Override
-    public Review creatReview(CreatReviewDTO request) {
+    @Transactional
+    public Review creatReview(Long memberId, Long storeId, CreatReviewDTO request) {
+        Review review = StoreConverter.toReview(request);
+        review.setMember(memberRepository.findById(memberId).get());
+        review.setStore(storeRepository.findById(storeId).get());
 
-        return null;
+        return review;
     }
 }
