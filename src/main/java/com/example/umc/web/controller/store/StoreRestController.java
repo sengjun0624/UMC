@@ -14,6 +14,7 @@ import com.example.umc.domain.Review;
 import com.example.umc.domain.Store;
 import com.example.umc.service.storeservice.StoreCommandService;
 import com.example.umc.validation.annotation.ExistMember;
+import com.example.umc.validation.annotation.ExistStore;
 import com.example.umc.web.dto.store.StoreRequestDTO;
 import com.example.umc.web.dto.store.StoreResponseDTO;
 import com.example.umc.web.dto.store.StoreReviewRequestDTO;
@@ -39,12 +40,11 @@ public class StoreRestController {
         return ApiResponse.onSuccess(StoreConverter.toStoreSaveResultDTO(store));
     }
 
-    // :TODO: pathvariable이랑 QueryString에 커스텀 어노테이션 추가하기.
     @PostMapping("/{storeId}/reviews")
     public ApiResponse<StoreReviewResponseDTO.CreatReviewResultDTO> creat(
             @RequestBody @Valid StoreReviewRequestDTO.CreatReviewDTO request,
-            @RequestParam(name = "memberId") @ExistMember Long memberId,
-            @PathVariable(name = "storeId") Long storeId) {
+            @ExistMember @RequestParam(name = "memberId") Long memberId,
+            @ExistStore @PathVariable(name = "storeId") Long storeId) {
 
         Review review = storeCommandService.creatReview(memberId, storeId, request);
         return ApiResponse.onSuccess(StoreConverter.toCreatReviewResultDTO(review));

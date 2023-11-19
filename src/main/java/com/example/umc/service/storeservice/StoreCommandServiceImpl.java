@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class StoreCommandServiceImpl implements StoreCommandService {
 
     private final StoreRepository storeRepository;
@@ -29,7 +29,6 @@ public class StoreCommandServiceImpl implements StoreCommandService {
     private final MemberRepository memberRepository;
 
     @Override
-    @Transactional
     public Store SaveStore(StoreRequestDTO.StoreSaveDto request) {
 
         Store newStore = StoreConverter.toStore(request);
@@ -44,7 +43,6 @@ public class StoreCommandServiceImpl implements StoreCommandService {
     }
 
     @Override
-    @Transactional
     public Review creatReview(Long memberId, Long storeId, CreatReviewDTO request) {
         Review review = StoreConverter.toReview(request);
         review.setMember(memberRepository.findById(memberId).get());
