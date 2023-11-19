@@ -1,4 +1,4 @@
-package com.example.umc.service.memberservice;
+package com.example.umc.service.foodservice;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class FoodCategoryExistsImpl implements FoodCategoryExists {
+public class FoodCategoryQueryServiceImpl implements FoodCategoryQueryService {
     private final FoodCategoryRepository foodCategoryRepository;
 
     @Override

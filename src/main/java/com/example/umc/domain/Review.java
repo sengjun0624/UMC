@@ -2,6 +2,7 @@ package com.example.umc.domain;
 
 import com.example.umc.domain.base.BaseEntity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +27,7 @@ public class Review extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(columnDefinition = "TEXT")
     private String body;
 
     private Float score;
@@ -37,4 +39,22 @@ public class Review extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    public void setMember(Member member) {
+
+        if (this.member != null) {
+            member.getReviewList().remove(this);
+        }
+        this.member = member;
+        member.getReviewList().add(this);
+    }
+
+    public void setStore(Store store) {
+
+        if (this.store != null) {
+            store.getReviewList().remove(this);
+        }
+        this.store = store;
+        store.getReviewList().add(this);
+    }
 }

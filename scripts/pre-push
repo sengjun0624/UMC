@@ -7,7 +7,7 @@ MAIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 cd $MAIN_DIR/../../
 
-sudo ./gradlew clean test
+./gradlew clean test
 if [ $? -ne 0 ]; then
   echo
   echo "==> Error while testing the code"
