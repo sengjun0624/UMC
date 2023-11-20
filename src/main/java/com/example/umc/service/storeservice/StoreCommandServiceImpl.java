@@ -4,7 +4,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.umc.apipayload.code.status.ErrorStatus;
+import com.example.umc.apipayload.exceptions.handler.MemberHandler;
 import com.example.umc.apipayload.exceptions.handler.RegionHandler;
+import com.example.umc.apipayload.exceptions.handler.StoreHandler;
 import com.example.umc.converter.store.StoreConverter;
 import com.example.umc.domain.Region;
 import com.example.umc.domain.Review;
@@ -28,6 +30,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
 
     private final MemberRepository memberRepository;
 
+    @Transactional
     @Override
     public Store SaveStore(StoreRequestDTO.StoreSaveDto request) {
 
@@ -44,9 +47,16 @@ public class StoreCommandServiceImpl implements StoreCommandService {
 
     @Override
     public Review creatReview(Long memberId, Long storeId, CreatReviewDTO request) {
+
         Review review = StoreConverter.toReview(request);
-        review.setMember(memberRepository.findById(memberId).get());
-        review.setStore(storeRepository.findById(storeId).get());
+        review.setMember(
+                memberRepository
+                        .findById(memberId)
+                        .orElseThrow(() -> new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND)));
+        review.setStore(
+                storeRepository
+                        .findById(storeId)
+                        .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND)));
         return review;
     }
 }

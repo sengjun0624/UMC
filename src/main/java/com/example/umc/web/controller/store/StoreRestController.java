@@ -9,12 +9,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.umc.apipayload.ApiResponse;
+import com.example.umc.converter.mission.MissionConverter;
 import com.example.umc.converter.store.StoreConverter;
+import com.example.umc.domain.Mission;
 import com.example.umc.domain.Review;
 import com.example.umc.domain.Store;
+import com.example.umc.service.missionservice.MissionCommandService;
 import com.example.umc.service.storeservice.StoreCommandService;
 import com.example.umc.validation.annotation.ExistMember;
 import com.example.umc.validation.annotation.ExistStore;
+import com.example.umc.web.dto.store.StoreMissionRequestDTO;
+import com.example.umc.web.dto.store.StoreMissionResponseDTO;
 import com.example.umc.web.dto.store.StoreRequestDTO;
 import com.example.umc.web.dto.store.StoreResponseDTO;
 import com.example.umc.web.dto.store.StoreReviewRequestDTO;
@@ -31,6 +36,8 @@ public class StoreRestController {
 
     private final StoreCommandService storeCommandService;
 
+    private final MissionCommandService missionCommandService;
+
     @PostMapping("/")
     public ApiResponse<StoreResponseDTO.StoreSaveResultDTO> save(
             @RequestBody @Valid StoreRequestDTO.StoreSaveDto request) {
@@ -41,12 +48,21 @@ public class StoreRestController {
     }
 
     @PostMapping("/{storeId}/reviews")
-    public ApiResponse<StoreReviewResponseDTO.CreatReviewResultDTO> creat(
+    public ApiResponse<StoreReviewResponseDTO.CreatReviewResultDTO> creatReview(
             @RequestBody @Valid StoreReviewRequestDTO.CreatReviewDTO request,
             @ExistMember @RequestParam(name = "memberId") Long memberId,
             @ExistStore @PathVariable(name = "storeId") Long storeId) {
 
         Review review = storeCommandService.creatReview(memberId, storeId, request);
         return ApiResponse.onSuccess(StoreConverter.toCreatReviewResultDTO(review));
+    }
+
+    @PostMapping("/{storeId}/missions")
+    public ApiResponse<StoreMissionResponseDTO.CreatResultDTO> creatMission(
+            @RequestBody @Valid StoreMissionRequestDTO.CreatDTO request,
+            @ExistStore @PathVariable(name = "storeId") Long storeId) {
+
+        Mission mission = missionCommandService.save(request, storeId);
+        return ApiResponse.onSuccess(MissionConverter.toCreatResultDTO(mission));
     }
 }
