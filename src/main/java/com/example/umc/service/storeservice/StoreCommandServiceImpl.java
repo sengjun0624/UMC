@@ -39,12 +39,13 @@ public class StoreCommandServiceImpl implements StoreCommandService {
     }
 
     @Override
-    public Review creatReview(Long memberId, Long storeId, CreatReviewDTO request) {
+    public Review creatReview(CreatReviewDTO request) {
 
         Review review = StoreConverter.toReview(request);
 
-        review.setMember(memberRepository.findById(memberId).get());
-        review.setStore(storeRepository.findById(storeId).get());
+        review.setMember(memberRepository.findById(request.getMemberId()).get());
+        review.setStore(storeRepository.findById(request.getStoreId()).get());
+
         return review;
     }
 }
