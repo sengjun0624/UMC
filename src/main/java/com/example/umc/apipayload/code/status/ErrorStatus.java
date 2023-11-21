@@ -19,6 +19,7 @@ public enum ErrorStatus implements BaseErrorCode {
     // Member Error
 
     MEMBER_NOT_FOUND(HttpStatus.BAD_REQUEST, "MEMBER4001", "사용자가 없습니다."),
+    MEMBER_NOT_EXIST(HttpStatus.NOT_FOUND, "MEMBER4002", "사용자가 존재하지 않습니다."),
     NICKNAME_NOT_EXIST(HttpStatus.BAD_REQUEST, "MEMBER4002", "닉네임은 필수 입니다."),
 
     // Article Error
@@ -32,8 +33,10 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // Region Error
     REGION_NOT_FOUND(HttpStatus.NOT_FOUND, "REGION4001", "해당 지역이 없습니다."),
-
-    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE4001", "해당 상점이 없습니다.");
+    // Store Error
+    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE4001", "해당 상점이 없습니다."),
+    // Mission Error
+    MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MISSION401", "해당 미션이 없습니다");
 
     private final HttpStatus httpStatus;
 
