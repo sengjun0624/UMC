@@ -4,5 +4,5 @@ import com.example.umc.domain.Mission;
 import com.example.umc.web.dto.store.StoreMissionRequestDTO;
 
 public interface MissionCommandService {
-    public Mission save(StoreMissionRequestDTO.CreatDTO request, Long storeId);
+    public Mission saveMission(StoreMissionRequestDTO.CreatDTO request);
 }
