@@ -3,8 +3,6 @@ package com.example.umc.service.missionservice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.umc.apipayload.code.status.ErrorStatus;
-import com.example.umc.apipayload.exceptions.handler.StoreHandler;
 import com.example.umc.converter.mission.MissionConverter;
 import com.example.umc.domain.Mission;
 import com.example.umc.domain.Store;
@@ -26,11 +24,7 @@ public class MissionCommandServiceImpl implements MissionCommandService {
     @Override
     public Mission save(CreatDTO request, Long storeId) {
         Mission mission = MissionConverter.toMission(request);
-        Store store =
-                storeRepository
-                        .findById(storeId)
-                        .orElseThrow(() -> new StoreHandler(ErrorStatus.STORE_NOT_FOUND));
-
+        Store store = storeRepository.findById(storeId).get();
         mission.setStore(store);
 
         return missionRepository.save(mission);

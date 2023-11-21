@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.umc.apipayload.code.status.ErrorStatus;
-import com.example.umc.apipayload.exceptions.handler.FoodCategoryHandler;
 import com.example.umc.converter.member.MemberConverter;
 import com.example.umc.converter.member.MemberPreferConverter;
 import com.example.umc.domain.FoodCategory;
@@ -37,13 +35,7 @@ public class MemberCommandServiceImpl implements MemberCommandService {
                 request.getPreferCategory().stream()
                         .map(
                                 category -> {
-                                    return foodCategoryRepository
-                                            .findById(category)
-                                            .orElseThrow(
-                                                    () ->
-                                                            new FoodCategoryHandler(
-                                                                    ErrorStatus
-                                                                            .FOOD_CATEGORY_NOT_FOUND));
+                                    return foodCategoryRepository.findById(category).get();
                                 })
                         .collect(Collectors.toList());
 
