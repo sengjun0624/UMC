@@ -22,11 +22,10 @@ public class MissionCommandServiceImpl implements MissionCommandService {
 
     @Transactional
     @Override
-    public Mission save(CreatDTO request, Long storeId) {
+    public Mission saveMission(CreatDTO request) {
         Mission mission = MissionConverter.toMission(request);
-        Store store = storeRepository.findById(storeId).get();
+        Store store = storeRepository.findById(request.getStoreId()).get();
         mission.setStore(store);
-
         return missionRepository.save(mission);
     }
 }
