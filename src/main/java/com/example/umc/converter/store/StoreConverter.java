@@ -1,6 +1,7 @@
 package com.example.umc.converter.store;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.example.umc.domain.Review;
 import com.example.umc.domain.Store;
@@ -40,5 +41,14 @@ public class StoreConverter {
     public static Review toReview(StoreReviewRequestDTO.CreatReviewDTO request) {
 
         return Review.builder().body(request.getBody()).score(request.getScore()).build();
+    }
+
+    public static StoreResponseDTO.ReviewPreViewDTO reviewPreViewDTO(Review review) {
+        return null;
+    }
+
+    public static StoreResponseDTO.ReviewPreViewListDTO reviewPreViewListDTO(
+            List<Review> reviewList) {
+        return null;
     }
 }
