@@ -12,6 +12,7 @@ public class StoreRequestDTO {
 
     @Getter
     public static class StoreSaveDto {
+
         @NotBlank private String name;
 
         @NotNull private String address;
