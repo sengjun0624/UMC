@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.umc.apipayload.ApiResponse;
@@ -16,6 +17,7 @@ import com.example.umc.domain.Review;
 import com.example.umc.domain.Store;
 import com.example.umc.service.missionservice.MissionCommandService;
 import com.example.umc.service.storeservice.StoreCommandService;
+import com.example.umc.service.storeservice.StoreQueryService;
 import com.example.umc.validation.annotation.ExistStore;
 import com.example.umc.web.dto.store.StoreMissionRequestDTO;
 import com.example.umc.web.dto.store.StoreMissionResponseDTO;
@@ -42,6 +44,8 @@ public class StoreRestController {
     private final StoreCommandService storeCommandService;
 
     private final MissionCommandService missionCommandService;
+
+    private final StoreQueryService storeQueryService;
 
     @PostMapping("/")
     public ApiResponse<StoreResponseDTO.StoreSaveResultDTO> save(
@@ -91,7 +95,9 @@ public class StoreRestController {
     })
     @Parameters({@Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!")})
     public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList(
-            @ExistStore @PathVariable(name = "storeId") Long storeId) {
+            @ExistStore @PathVariable(name = "storeId") Long storeId,
+            @RequestParam(name = "page") Integer page) {
+        storeQueryService.getReviewList(storeId, page);
         return null;
     }
 }
