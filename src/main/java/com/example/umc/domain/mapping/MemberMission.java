@@ -39,7 +39,7 @@ public class MemberMission extends BaseEntity {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mission_id")
+    @JoinColumn(name = "mission₩_id")
     private Mission mission;
 
     public void setMember(Member member) {

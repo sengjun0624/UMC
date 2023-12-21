@@ -44,6 +44,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
         Review review = StoreConverter.toReview(request);
 
         review.setMember(memberRepository.findById(request.getMemberId()).get());
+        // TODO 유효성 검증을 여기서 하는게 좋다고 하심
         review.setStore(storeRepository.findById(request.getStoreId()).get());
 
         return review;
