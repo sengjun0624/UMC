@@ -20,6 +20,7 @@ import com.example.umc.service.missionservice.MissionCommandService;
 import com.example.umc.service.storeservice.StoreCommandService;
 import com.example.umc.service.storeservice.StoreQueryService;
 import com.example.umc.validation.annotation.ExistStore;
+import com.example.umc.validation.annotation.ValidPageIndex;
 import com.example.umc.web.dto.store.StoreMissionRequestDTO;
 import com.example.umc.web.dto.store.StoreMissionResponseDTO;
 import com.example.umc.web.dto.store.StoreRequestDTO;
@@ -97,7 +98,7 @@ public class StoreRestController {
     @Parameters({@Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!")})
     public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList(
             @ExistStore @PathVariable(name = "storeId") Long storeId,
-            @RequestParam(name = "page") Integer page) {
+            @ValidPageIndex @RequestParam(name = "page") Integer page) {
         page = (page == 0) ? 0 : page - 1;
         Page<Review> reviewPage = storeQueryService.getReviewList(storeId, page);
         return ApiResponse.onSuccess(StoreConverter.reviewPreViewListDTO(reviewPage));
