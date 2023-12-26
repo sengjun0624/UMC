@@ -1,5 +1,6 @@
 package com.example.umc.web.controller.store;
 
+import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -97,7 +98,8 @@ public class StoreRestController {
     public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList(
             @ExistStore @PathVariable(name = "storeId") Long storeId,
             @RequestParam(name = "page") Integer page) {
-        storeQueryService.getReviewList(storeId, page);
-        return null;
+        page = (page == 0) ? 0 : page - 1;
+        Page<Review> reviewPage = storeQueryService.getReviewList(storeId, page);
+        return ApiResponse.onSuccess(StoreConverter.reviewPreViewListDTO(reviewPage));
     }
 }
